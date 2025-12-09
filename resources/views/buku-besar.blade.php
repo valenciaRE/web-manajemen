@@ -18,11 +18,37 @@
         <input id="to" type="date" class="w-full p-2 rounded border dark:bg-gray-700 dark:border-gray-600">
       </div>
 
+<<<<<<< HEAD
       <div class="flex gap-2">
         <button id="btnFilter" class="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded">Tampilkan</button>
         <button id="btnExport" class="px-4 py-2 bg-green-600 hover:bg-green-700 text-white rounded">Export Excel</button>
         <button id="btnDetail" class="px-4 py-2 bg-yellow-500 hover:bg-yellow-600 text-white rounded">Detail</button>
       </div>
+=======
+</nav>
+
+<div class="card p-3">
+
+     <form action="{{ route('buku-besar.tampilkan') }}" method="GET">
+        <div class="row mt-3">
+
+    <div class="row g-2 align-items-end">
+        <div class="col-md-3">
+            <label>Tanggal Awal</label>
+            <input type="date" class="form-control">
+        </div>
+
+        <div class="col-md-3">
+            <label>Tanggal Akhir</label>
+            <input type="date" class="form-control">
+        </div>
+
+        <div class="col-md-6 d-flex gap-2 mt-3 mt-md-0">
+            <button class="btn btn-primary">Tampilkan</button>
+            <button class="btn btn-success">Export Excel</button>
+            <button class="btn btn-warning">Detail Buku Besar</button>
+        </div>
+>>>>>>> 33a1d641f93277cb5ef7ce9af31ebb3e309c47ac
     </div>
   </div>
 
@@ -115,10 +141,44 @@
     return (neg ? '(' : '') + a.toString().replace(/\B(?=(\d{3})+(?!\d))/g,".") + (neg ? ')' : '');
   }
 
+<<<<<<< HEAD
   // ===== table logic =====
   let state = {
     q: '', page:1, perPage:10, sortKey:null, sortDir: 'asc', rows: DATA.slice()
   };
+=======
+        <table class="table table-bordered mt-3">
+            <thead class="table-light">
+                <tr>
+                    <th>Data_transaction</th>
+                    <th>Saldo Awal</th>
+                    <th>Debit</th>
+                    <th>Kredit</th>
+                    <th>Saldo Akhir</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>1.0.00 - Aset</td>
+                    <td>0,00</td><td>0,00</td><td>0,00</td><td>0,00</td>
+                </tr>
+                <tr>
+                    <td>1.1.01 - Kas Besar</td>
+                    <td>17.666.589.600,00</td>
+                    <td>0,00</td>
+                    <td>0,00</td>
+                    <td>17.666.589.600,00</td>
+                </tr>
+                <tr>
+                    <td>1.1.01.02 - Kas Kecil</td>
+                    <td>-34.750,00</td>
+                    <td>0,00</td>
+                    <td>0,00</td>
+                    <td>(34.750,00)</td>
+                </tr>
+            </tbody>
+        </table>
+>>>>>>> 33a1d641f93277cb5ef7ce9af31ebb3e309c47ac
 
   const tbody = document.getElementById('tbody');
   const searchEl = document.getElementById('search');
