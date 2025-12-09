@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\ViewController;
+use App\Http\Controllers\BukuBesarController;
+use App\Http\Controllers\LaporanController;
 
 // =====================
 // HOME
@@ -30,11 +32,11 @@ Route::get('/dashboard', [ViewController::class, 'index'])
     ->middleware('auth');
 
 // =====================
-// PAGE ROUTES (UNTUK SIDEBAR)
+// SIDEBAR PAGE ROUTES
 // =====================
 
-// BUKU BESAR
-Route::get('/buku-besar', [ViewController::class, 'bukubesar'])
+// BUKU BESAR – gunakan Controller khusus
+Route::get('/buku-besar', [BukuBesarController::class, 'index'])
     ->name('buku-besar')
     ->middleware('auth');
 
@@ -48,11 +50,28 @@ Route::get('/pengaturan', [ViewController::class, 'pengaturan'])
     ->name('pengaturan')
     ->middleware('auth');
 
-
 // =====================
-// OPTIONAL (kalau kamu masih pakai ini)
+// OPTIONAL OTHER PAGES
 // =====================
 Route::get('/buku-kecil', [ViewController::class, 'bukukecil'])->middleware('auth');
 Route::get('/kas', [ViewController::class, 'kas'])->middleware('auth');
-Route::get('/neraca', [ViewController::class, 'neraca'])->middleware('auth'); 
+Route::get('/neraca', [ViewController::class, 'neraca'])->middleware('auth');
 
+// =====================
+// PASSWORD RESET
+// =====================
+Route::get('/forgot-password', function () {
+    return view('auth.forgot-password');
+})->name('password.request');
+
+Route::post('/forgot-password', [AuthController::class, 'sendResetLink'])
+    ->name('password.email');
+
+Route::get('/reset-password/{token}', function ($token) {
+    return view('auth.reset-password', ['token' => $token]);
+})->name('password.reset');
+
+Route::post('/reset-password', [AuthController::class, 'resetPassword'])
+    ->name('password.update'); 
+
+Route::get('/buku-besar', fn() => view('buku-besar'));

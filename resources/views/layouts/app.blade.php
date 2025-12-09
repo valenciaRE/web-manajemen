@@ -1,59 +1,81 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Manajemen</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <style>
-        body {
-            overflow-x: hidden;
-        }
-        .sidebar {
-            width: 240px;
-            height: 100vh;
-            position: fixed;
-            left: 0;
-            top: 0;
-            background: #2d2d2d;
-            padding-top: 20px;
-            color: white;
-        }
-        .sidebar a {
-            color: #fff;
-            padding: 12px 20px;
-            display: block;
-            text-decoration: none;
-        }
-        .sidebar a:hover {
-            background: #444;
-        }
-        .content {
-            margin-left: 240px;
-            padding: 20px;
-        }
-    </style>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>{{ $title ?? 'Sistem Akuntansi' }}</title>
+
+  <!-- Tailwind CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Chart.js CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+  <style>
+    /* small polish */
+    .table-fixed th, .table-fixed td { white-space: nowrap; }
+    .scroll-shadow { box-shadow: inset 0 -20px 20px -20px rgba(0,0,0,0.2); }
+  </style>
 </head>
-<body>
+<body class="flex bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-gray-100 min-h-screen">
 
-<div class="sidebar">
-    <h4 class="text-center">Akuntansi</h4>
-    <hr class="bg-light">
+  <!-- SIDEBAR -->
+  <aside id="sidebar" class="w-64 bg-gray-900 dark:bg-gray-950 text-white min-h-screen transition-all duration-300">
+    <div class="p-6 flex items-center justify-between">
+      <h1 class="text-xl font-semibold">Akuntansi</h1>
+      <button onclick="toggleSidebar()" class="p-2 bg-gray-800 rounded hidden md:inline">☰</button>
+    </div>
 
-    <a href="{{ route('dashboard') }}">🏠 Dashboard</a>
-    <a href="{{ route('buku-besar') }}">📘 Buku Besar</a>
-    <a href="#">📄 Laporan</a>
-    <a href="#">⚙ Pengaturan</a>
+    <nav class="mt-2">
+      <a class="block px-6 py-3 hover:bg-gray-700 {{ request()->is('dashboard') ? 'bg-gray-700' : '' }}" href="/dashboard">Dashboard</a>
+      <a class="block px-6 py-3 hover:bg-gray-700 {{ request()->is('buku-besar') ? 'bg-gray-700' : '' }}" href="/buku-besar">Buku Besar</a>
+      <a class="block px-6 py-3 hover:bg-gray-700 {{ request()->is('laporan') ? 'bg-gray-700' : '' }}" href="/laporan">Laporan</a>
+      <a class="block px-6 py-3 hover:bg-gray-700 {{ request()->is('pengaturan') ? 'bg-gray-700' : '' }}" href="/pengaturan">Pengaturan</a>
 
-    <form action="{{ route('logout') }}" method="POST">
+      <form method="POST" action="/logout" class="px-6 mt-6">
         @csrf
-        <button class="btn btn-danger w-100 mt-3">Logout</button>
-    </form>
-</div>
+        <button class="w-full bg-red-600 hover:bg-red-700 py-2 rounded">Logout</button>
+      </form>
+    </nav>
+  </aside>
 
+  <!-- MAIN -->
+  <main class="flex-1 p-6 lg:p-8">
+    <!-- Small top controls -->
+    <div class="flex items-center justify-between mb-6">
+      <div>
+        <h2 class="text-2xl font-bold">@yield('page-title','Dashboard')</h2>
+        <p class="text-sm text-gray-500 dark:text-gray-400">@yield('page-subtitle')</p>
+      </div>
 
-<div class="content">
+      <!-- theme toggle (icon only) -->
+      <div class="flex items-center gap-3">
+        <button id="themeBtn" onclick="toggleTheme()" class="p-2 rounded bg-gray-800 dark:bg-gray-200 text-white dark:text-gray-900 shadow">
+          🌓
+        </button>
+      </div>
+    </div>
+
     @yield('content')
-</div>
+  </main>
+
+  <script>
+    // sidebar collapse for small screens
+    function toggleSidebar(){
+      const sb = document.getElementById('sidebar');
+      sb.classList.toggle('w-20');
+      sb.classList.toggle('w-64');
+    }
+
+    // theme
+    document.addEventListener('DOMContentLoaded', ()=> {
+      if(localStorage.getItem('theme')==='dark') document.documentElement.classList.add('dark');
+    });
+    function toggleTheme(){
+      const html = document.documentElement;
+      html.classList.toggle('dark');
+      localStorage.setItem('theme', html.classList.contains('dark') ? 'dark' : 'light');
+    }
+  </script>
 
 </body>
 </html>
