@@ -1,13 +1,10 @@
-@extends('layouts.app')
+@extends('layouts.app', ['title' => 'Dashboard'])
 
 @section('content')
-<h2>Selamat Datang di Sistem Akuntansi</h2>
-<p>Silakan pilih menu di sidebar untuk mengakses fitur.</p>
+<p class="text-sm text-gray-500 dark:text-gray-400 mb-6">Home / Dashboard</p>
 
-<div class="card mt-3">
-    <div class="card-body">
-        <h4>Menu Cepat</h4>
-        <a href="{{ route('buku-besar') }}" class="btn btn-primary mt-2">📘 Masuk ke Buku Besar</a>
-    </div>
+<div class="bg-white dark:bg-gray-700 p-6 rounded shadow">
+    Dashboard content here...
 </div>
 @endsection
+

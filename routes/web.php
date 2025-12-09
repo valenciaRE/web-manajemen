@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\ViewController;
+use App\Http\Controllers\BukuBesarController;
+use App\Http\Controllers\LaporanController;
 
 
 Route::get('/', function () {
@@ -27,13 +29,19 @@ Route::get('/dashboard', [ViewController::class, 'index'])
     ->name('dashboard')
     ->middleware('auth');
 
+<<<<<<< HEAD
+// =====================
+// SIDEBAR PAGE ROUTES
+// =====================
+=======
 // LAPORAN
 Route::get('/laporan', [ViewController::class, 'laporan'])
     ->name('laporan')
     ->middleware('auth');
+>>>>>>> 33a1d641f93277cb5ef7ce9af31ebb3e309c47ac
 
-// BUKU BESAR
-Route::get('/buku-besar', [ViewController::class, 'bukubesar'])
+// BUKU BESAR – gunakan Controller khusus
+Route::get('/buku-besar', [BukuBesarController::class, 'index'])
     ->name('buku-besar')
     ->middleware('auth');
 
@@ -47,11 +55,37 @@ Route::get('/pengaturan', [ViewController::class, 'pengaturan'])
     ->name('pengaturan')
     ->middleware('auth');
 
+<<<<<<< HEAD
+// =====================
+// OPTIONAL OTHER PAGES
+// =====================
+=======
 
+>>>>>>> 33a1d641f93277cb5ef7ce9af31ebb3e309c47ac
 Route::get('/buku-kecil', [ViewController::class, 'bukukecil'])->middleware('auth');
 Route::get('/kas', [ViewController::class, 'kas'])->middleware('auth');
-Route::get('/neraca', [ViewController::class, 'neraca'])->middleware('auth'); 
+Route::get('/neraca', [ViewController::class, 'neraca'])->middleware('auth');
 
+<<<<<<< HEAD
+// =====================
+// PASSWORD RESET
+// =====================
+Route::get('/forgot-password', function () {
+    return view('auth.forgot-password');
+})->name('password.request');
+
+Route::post('/forgot-password', [AuthController::class, 'sendResetLink'])
+    ->name('password.email');
+
+Route::get('/reset-password/{token}', function ($token) {
+    return view('auth.reset-password', ['token' => $token]);
+})->name('password.reset');
+
+Route::post('/reset-password', [AuthController::class, 'resetPassword'])
+    ->name('password.update'); 
+
+Route::get('/buku-besar', fn() => view('buku-besar'));
+=======
 Route::get('/home', function () {
     return view('home');
 })->name('home');
@@ -62,3 +96,4 @@ Route::get('/akuntan', [ViewController::class, 'akuntan'])->name('akuntan');
 Route::get('/laporan', [ViewController::class, 'laporan'])->name('laporan');
 
 Route::get('/buku-besar', [ViewController::class, 'bukubesar'])->name('buku-besar');
+>>>>>>> 33a1d641f93277cb5ef7ce9af31ebb3e309c47ac
