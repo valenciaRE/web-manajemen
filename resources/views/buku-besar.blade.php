@@ -16,6 +16,9 @@
 
 <div class="card p-3">
 
+     <form action="{{ route('buku-besar.tampilkan') }}" method="GET">
+        <div class="row mt-3">
+
     <div class="row g-2 align-items-end">
         <div class="col-md-3">
             <label>Tanggal Awal</label>
@@ -44,7 +47,7 @@
         <table class="table table-bordered mt-3">
             <thead class="table-light">
                 <tr>
-                    <th>Akun</th>
+                    <th>Data_transaction</th>
                     <th>Saldo Awal</th>
                     <th>Debit</th>
                     <th>Kredit</th>
