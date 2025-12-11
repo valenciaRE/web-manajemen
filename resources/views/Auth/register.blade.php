@@ -12,7 +12,18 @@
 <div class="flex justify-center items-center min-h-screen">
     <div class="w-full max-w-md bg-white p-8 rounded-lg shadow">
 
-        <h2 class="text-2xl font-bold text-center mb-6">Register</h2>
+        <h2 class="text-2xl font-bold text-center mb-6">Register</h2> 
+
+        @if ($errors->any())
+    <div class="bg-red-100 border border-red-400 text-red-700 p-3 rounded mb-4">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>- {{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
+
 
         <form action="{{ route('register.submit') }}" method="POST">
             @csrf

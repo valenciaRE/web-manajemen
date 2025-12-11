@@ -16,7 +16,7 @@
 
         <nav class="p-4 space-y-2">
             <a href="/" class="block px-3 py-2 rounded hover:bg-gray-200">Dashboard</a>
-            <a href="/buku-besar" class="block px-3 py-2 rounded hover:bg-gray-200">
+            <a href="{{ route('bukbes') }}" class="block px-3 py-2 rounded hover:bg-gray-200">
                 Buku Besar
             </a>
         </nav>

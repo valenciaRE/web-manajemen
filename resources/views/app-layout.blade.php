@@ -17,7 +17,7 @@
 
         <nav class="mt-4 space-y-2">
             <a href="/dashboard" class="block px-6 py-3 hover:bg-gray-700">Dashboard</a>
-            <a href="/buku-besar" class="block px-6 py-3 hover:bg-gray-700">Buku Besar</a>
+            <a href="{{ route('bukbes') }}" class="block px-6 py-3 hover:bg-gray-700">Buku Besar</a>
             <a href="/laporan" class="block px-6 py-3 hover:bg-gray-700">Laporan</a>
             <a href="/pengaturan" class="block px-6 py-3 hover:bg-gray-700">Pengaturan</a>
 
