@@ -17,5 +17,10 @@ class Bukbes extends Model
         'saldo_akhir',
         'deleted'
     ];
+    // Relasi ke COA (yang benar)
+    public function coa()
+    {
+        return $this->belongsTo(Coa::class, 'id_coa', 'id_coa');
+    }
 }
 

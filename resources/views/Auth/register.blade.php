@@ -15,42 +15,65 @@
         <h2 class="text-2xl font-bold text-center mb-6">Register</h2> 
 
         @if ($errors->any())
-    <div class="bg-red-100 border border-red-400 text-red-700 p-3 rounded mb-4">
-        <ul>
-            @foreach ($errors->all() as $error)
-                <li>- {{ $error }}</li>
-            @endforeach
-        </ul>
-    </div>
-@endif
-
+            <div class="bg-red-100 border border-red-400 text-red-700 p-3 rounded mb-4">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>- {{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
 
         <form action="{{ route('register.submit') }}" method="POST">
             @csrf
 
             <label class="block mb-2 text-gray-700">Name</label>
-            <input type="text" name="name"
-                   class="w-full p-2 border rounded mb-3" required>
+            <input 
+                type="text" 
+                name="name"
+                placeholder="Masukkan nama lengkap"
+                value="{{ old('name') }}"
+                class="w-full p-2 border rounded mb-3 focus:outline-none focus:ring focus:border-green-500"
+                required
+            >
 
             <label class="block mb-2 text-gray-700">Email</label>
-            <input type="email" name="email"
-                   class="w-full p-2 border rounded mb-3" required>
+            <input 
+                type="email" 
+                name="email"
+                placeholder="Masukkan email"
+                value="{{ old('email') }}"
+                class="w-full p-2 border rounded mb-3 focus:outline-none focus:ring focus:border-green-500"
+                required
+            >
 
             <label class="block mb-2 text-gray-700">Password</label>
-            <input type="password" name="password"
-                   class="w-full p-2 border rounded mb-3" required>
+            <input 
+                type="password" 
+                name="password"
+                placeholder="Minimal 8 karakter"
+                class="w-full p-2 border rounded mb-3 focus:outline-none focus:ring focus:border-green-500"
+                required
+            >
 
             <label class="block mb-2 text-gray-700">Confirm Password</label>
-            <input type="password" name="password_confirmation"
-                   class="w-full p-2 border rounded mb-3" required>
+            <input 
+                type="password" 
+                name="password_confirmation"
+                placeholder="Ulangi password"
+                class="w-full p-2 border rounded mb-3 focus:outline-none focus:ring focus:border-green-500"
+                required
+            >
 
-            <button class="w-full bg-green-600 text-white p-2 rounded hover:bg-green-700">
+            <button class="w-full bg-green-600 text-white p-2 rounded hover:bg-green-700 transition">
                 Register
             </button>
 
             <p class="text-center mt-3 text-sm">
                 Sudah punya akun?
-                <a href="{{ route('login') }}" class="text-blue-600">Login</a>
+                <a href="{{ route('login') }}" class="text-blue-600 hover:underline">
+                    Login
+                </a>
             </p>
 
         </form>

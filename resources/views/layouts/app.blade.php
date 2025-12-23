@@ -27,7 +27,7 @@
 
     <nav class="mt-2">
       <a class="block px-6 py-3 hover:bg-gray-700 {{ request()->is('dashboard') ? 'bg-gray-700' : '' }}" href="/dashboard">Dashboard</a>
-      <a class="block px-6 py-3 hover:bg-gray-700 {{ request()->is('bukbes') ? 'bg-gray-700' : '' }}" href="/buku-besar">Buku Besar</a>
+      <a class="block px-6 py-3 hover:bg-gray-700 {{ request()->is('bukbes') ? 'bg-gray-700' : '' }}" href="/bukbes">Bukbes</a>
       <a class="block px-6 py-3 hover:bg-gray-700 {{ request()->is('laporan') ? 'bg-gray-700' : '' }}" href="/laporan">Laporan</a>
       <a class="block px-6 py-3 hover:bg-gray-700 {{ request()->is('pengaturan') ? 'bg-gray-700' : '' }}" href="/pengaturan">Pengaturan</a>
 

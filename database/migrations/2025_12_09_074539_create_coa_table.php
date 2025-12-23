@@ -4,26 +4,21 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration
+class CreateCoaTable extends Migration
 {
-    /**
-     * Run the migrations.
-     */
-    public function up(): void
+    public function up()
     {
-      Schema::create('coa', function (Blueprint $table) {
-    $table->id('id_coa');
-    $table->string('nama_akun');
-    $table->timestamps();
-});
-
+        Schema::create('coa', function (Blueprint $table) {
+            $table->id('id_coa');
+            $table->string('coa_name');
+            $table->string('coa_number');   
+            $table->string('posisi_awal')->nullable(); // Debit / Kredit
+            $table->timestamps();
+        });
     }
 
-    /**
-     * Reverse the migrations.
-     */
-    public function down(): void
+    public function down()
     {
         Schema::dropIfExists('coa');
     }
-};
+}
