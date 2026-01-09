@@ -72,6 +72,7 @@ Route::get('/home', function () {
     return view('home');
 })->name('home');
 
+Route::get('/bukbes', [BukbesController::class, 'index'])->name('bukbes');
 
 Route::get('/akuntan', [ViewController::class, 'akuntan'])->name('akuntan');
 
@@ -80,5 +81,6 @@ Route::get('/laporan', [ViewController::class, 'laporan'])->name('laporan');
 Route::get('/bukbes', [\App\Http\Controllers\BukbesController::class, 'index'])->name('bukbes');
 Route::get('/bukbes/data', [\App\Http\Controllers\BukbesController::class, 'getData'])->name('bukbes.data');
 Route::get('/bukbes/detail', [BukbesController::class, 'detail'])->name('bukbes.detail');
-Route::get('/bukbes/export', [BukbesController::class, 'export'])->name('bukbes.export');
+Route::get('/bukbes/export', [BukbesController::class, 'exportExcel'])->name('bukbes.export');
+
 
